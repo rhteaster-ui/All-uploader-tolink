@@ -1,13 +1,6 @@
 {
-  "version": 2,
-  "rewrites": [
-    {
-      "source": "/api/upload",
-      "destination": "/api/upload"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": null,
+  "outputDirectory": "."
 }
