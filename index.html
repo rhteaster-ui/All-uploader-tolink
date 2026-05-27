@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0f1a" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" type="image/png" href="/public/icon.png" />
+  <title>All Uploader To Link</title>
+  <style>
+    :root { --bg:#0b0f1a; --card:#11192b; --accent:#38bdf8; --text:#e5e7eb; --muted:#94a3b8; --ok:#22c55e; --err:#ef4444; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: radial-gradient(circle at top, #172554, var(--bg)); color: var(--text); min-height:100vh; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 20px; }
+    .card { background: rgba(17,25,43,.92); border:1px solid #334155; border-radius:14px; padding:20px; box-shadow:0 20px 45px rgba(0,0,0,.35); }
+    h1 { margin:0 0 10px; font-size:1.4rem; }
+    p { color:var(--muted); margin:.3rem 0 1rem; }
+    .top-notif { position:fixed; top:0; left:0; right:0; transform:translateY(-110%); transition:.25s ease; padding:12px 18px; text-align:center; z-index:999; font-weight:700; }
+    .top-notif.show { transform:translateY(0); }
+    .top-notif.ok { background:var(--ok); color:#052e16; }
+    .top-notif.err { background:var(--err); color:#fff; }
+    input[type=file], button { width:100%; }
+    input[type=file] { margin: 12px 0; padding: 12px; border:1px dashed #64748b; border-radius:10px; background:#0b1220; color:var(--muted); }
+    button { border:0; border-radius:10px; padding:12px; font-weight:700; background:var(--accent); color:#082f49; cursor:pointer; }
+    button:disabled { cursor:not-allowed; opacity:.65; }
+    .result { margin-top:15px; display:grid; gap:10px; }
+    .box { background:#0b1220; border:1px solid #334155; border-radius:10px; padding:12px; }
+    .file-meta { display:flex; justify-content:space-between; align-items:baseline; gap:8px; margin-bottom:6px; }
+    .file-meta strong { word-break:break-all; }
+    .size { color:var(--muted); font-size:.8em; white-space:nowrap; }
+    .url { word-break:break-all; color:#7dd3fc; margin-bottom:8px; }
+    .row { display:flex; gap:8px; }
+    .row button, .row .btn-copy { width:auto; flex:1; }
+    .btn-open {
+      display:inline-flex; align-items:center; justify-content:center;
+      flex:1; border:0; border-radius:10px; padding:12px;
+      font-weight:700; font-family: inherit; font-size:1rem;
+      background:#0f3460; color:#7dd3fc;
+      text-decoration:none; cursor:pointer;
+    }
+    .btn-open:hover { background:#1a4a80; }
+    .status-line { font-size:.85rem; color:var(--muted); }
+    .status-line.uploading { color:#fbbf24; }
+    .status-line.error { color:var(--err); }
+  </style>
+</head>
+<body>
+  <div id="notif" class="top-notif" role="status" aria-live="polite"></div>
+  <main class="wrap">
+    <section class="card">
+      <h1>All File Uploader → Link</h1>
+      <p>Upload file apa aja, backend bakal kirim ke Catbox dan balikin link siap pakai.</p>
+      <form id="uploadForm">
+        <input id="files" name="files" type="file" multiple required />
+        <button id="submitBtn" type="submit">Upload Sekarang</button>
+      </form>
+      <div id="result" class="result"></div>
+    </section>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>
